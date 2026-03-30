@@ -955,3 +955,113 @@ body {
         gap: 12px;
     }
 }
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: all 0.22s ease;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    border-color: var(--purple);
+    color: var(--purple);
+    transform: rotate(20deg);
+}
+
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* ── Form Status ── */
+.form-status {
+    display: none;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-status.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.form-status.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+    --purple: #a78bfa;
+    --purple-light: #2d1b69;
+    --purple-dark: #7c3aed;
+    --white: #0f0e1a;
+    --grey: #1a1a2e;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #2d2d4e;
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(15, 14, 26, 0.9);
+}
+
+[data-theme="dark"] .nav-links {
+    background: rgba(15, 14, 26, 0.97);
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #0f0e1a 0%, #1a1033 50%, #1e1240 100%);
+}
+
+[data-theme="dark"] .skill-card {
+    background: #1a1a2e;
+}
+
+[data-theme="dark"] .project-card {
+    background: #1a1a2e;
+}
+
+[data-theme="dark"] .stat-card {
+    background: linear-gradient(135deg, #1a1a2e, #2d1b69);
+}
+
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form textarea {
+    background: #1a1a2e;
+    color: var(--text);
+}
+
+[data-theme="dark"] .social-link {
+    background: #1a1a2e;
+}
+
+[data-theme="dark"] .form-status.success {
+    background: #064e3b;
+    color: #6ee7b7;
+    border-color: #065f46;
+}
+
+[data-theme="dark"] .form-status.error {
+    background: #7f1d1d;
+    color: #fca5a5;
+    border-color: #991b1b;
+}

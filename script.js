@@ -1,3 +1,17 @@
+// ── Dark Mode Toggle ──
+const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
 // ── Typing Animation ──
 const phrases = [
     'Computer Science Student',
@@ -128,4 +142,44 @@ if (skillsGrid) skillObserver.observe(skillsGrid);
 // ── Back to Top ──
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Contact Form (EmailJS) ──
+// TODO: Replace these placeholder values with your real credentials:
+// 1. Sign up at https://www.emailjs.com/
+// 2. Add an Email Service (e.g. Gmail) → copy the Service ID
+// 3. Create an Email Template → copy the Template ID
+// 4. Account → API Keys → copy your Public Key
+const EMAILJS_PUBLIC_KEY   = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID   = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID  = 'YOUR_TEMPLATE_ID';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+const contactForm = document.getElementById('contactForm');
+const formStatus  = document.getElementById('formStatus');
+
+contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const originalHTML = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+    formStatus.className = 'form-status';
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+        .then(() => {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = "Message sent! I'll get back to you soon.";
+            this.reset();
+        })
+        .catch(() => {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        });
 });
